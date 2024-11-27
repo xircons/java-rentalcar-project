@@ -95,95 +95,59 @@ class Main {
     public static String selectCarModel(String brand) {
         Scanner scanner = new Scanner(System.in);
         String selectedCarModel = "";
-
+    
+        String[] models = {};
         switch (brand.toLowerCase()) {
             case "toyota":
-                System.out.println("Select the model:");
-                System.out.println("1. Corolla");
-                System.out.println("2. Camry");
-                System.out.println("3. Hilux");
+                models = new String[]{"Corolla", "Camry", "Hilux"};
                 break;
             case "honda":
-                System.out.println("Select the model:");
-                System.out.println("1. Civic");
-                System.out.println("2. Accord");
-                System.out.println("3. HR-V");
+                models = new String[]{"Civic", "Accord", "HR-V"};
                 break;
             case "mercedes":
-                System.out.println("Select the model:");
-                System.out.println("1. A-Class");
-                System.out.println("2. C-Class");
-                System.out.println("3. E-Class");
+                models = new String[]{"A-Class", "C-Class", "E-Class"};
                 break;
             case "bmw":
-                System.out.println("Select the model:");
-                System.out.println("1. 3 Series");
-                System.out.println("2. 5 Series");
-                System.out.println("3. X5");
+                models = new String[]{"3 Series", "5 Series", "X5"};
                 break;
             case "tesla":
-                System.out.println("Select the model:");
-                System.out.println("1. Model 3");
-                System.out.println("2. Model S");
-                System.out.println("3. Model X");
+                models = new String[]{"Model 3", "Model S", "Model X"};
                 break;
             default:
                 System.out.println("Invalid brand selected.");
-                return ""; // Return empty if invalid brand
+                return "";
         }
-
-        System.out.print("Enter the number of the model: ");
-        int modelChoice = scanner.nextInt();
-        selectedCarModel="";
-
-        // Select the car model based on the user's choice
-        switch (brand.toLowerCase()) {
-            case "toyota":
-                switch (modelChoice) {
-                    case 1: selectedCarModel = "Corolla"; break;
-                    case 2: selectedCarModel = "Camry"; break;
-                    case 3: selectedCarModel = "Hilux"; break;
-                    default: System.out.println("Invalid model choice."); break;
+    
+        while (selectedCarModel.isEmpty()) {
+            System.out.println("Select the model:");
+            for (int i = 0; i < models.length; i++) {
+                System.out.println((i + 1) + ". " + models[i]);
+            }
+            System.out.print("Enter the number or name of the model: ");
+            
+            if (scanner.hasNextInt()) {
+                int modelChoice = scanner.nextInt();
+                if (modelChoice >= 1 && modelChoice <= models.length) {
+                    selectedCarModel = models[modelChoice - 1];
+                } else {
+                    System.out.println("Invalid number choice. Please try again.");
                 }
-                break;
-            case "honda":
-                switch (modelChoice) {
-                    case 1: selectedCarModel = "Civic"; break;
-                    case 2: selectedCarModel = "Accord"; break;
-                    case 3: selectedCarModel = "HR-V"; break;
-                    default: System.out.println("Invalid model choice."); break;
+            } else {
+                String modelInput = scanner.next().toLowerCase();
+                for (String model : models) {
+                    if (model.toLowerCase().equals(modelInput)) {
+                        selectedCarModel = model;
+                        break;
+                    }
                 }
-                break;
-            case "mercedes":
-                switch (modelChoice) {
-                    case 1: selectedCarModel = "A-Class"; break;
-                    case 2: selectedCarModel = "C-Class"; break;
-                    case 3: selectedCarModel = "E-Class"; break;
-                    default: System.out.println("Invalid model choice."); break;
+                if (selectedCarModel.isEmpty()) {
+                    System.out.println("Invalid model name. Please try again.");
                 }
-                break;
-            case "bmw":
-                switch (modelChoice) {
-                    case 1: selectedCarModel = "3 Series"; break;
-                    case 2: selectedCarModel = "5 Series"; break;
-                    case 3: selectedCarModel = "X5"; break;
-                    default: System.out.println("Invalid model choice."); break;
-                }
-                break;
-            case "tesla":
-                switch (modelChoice) {
-                    case 1: selectedCarModel = "Model 3"; break;
-                    case 2: selectedCarModel = "Model S"; break;
-                    case 3: selectedCarModel = "Model X"; break;
-                    default: System.out.println("Invalid model choice."); break;
-                }
-                break;
+            }
         }
-        if (selectedCarModel.isEmpty()) {
-            System.out.println("No valid car model selected.");
-        }
+    
         return selectedCarModel;
-    }
+    }    
 
     // Method to calculate the number of rental days between two dates
     public static int getDaysFromDate(int year, int month, int day, int[] daysInMonth) {
@@ -209,13 +173,36 @@ class Main {
 
         // Select the car brand
         String[] carBrands = {"Toyota", "Honda", "Mercedes", "BMW", "Tesla"};
-        System.out.println("Please select the car brand:");
-        for (int i = 0; i < carBrands.length; i++) {
-            System.out.println((i + 1) + ". " + carBrands[i]);
+        String selectedCarBrand = "";
+
+        while (selectedCarBrand.isEmpty()) {
+            System.out.println("Please select the car brand:");
+            for (int i = 0; i < carBrands.length; i++) {
+                System.out.println((i + 1) + ". " + carBrands[i]);
+            }
+            System.out.print("Enter number or name of the brands: ");
+            String input = scanner.nextLine();
+
+            try {
+                int brandChoice = Integer.parseInt(input);
+                if (brandChoice >= 1 && brandChoice <= carBrands.length) {
+                    selectedCarBrand = carBrands[brandChoice - 1];
+                } else {
+                    System.out.println("Invalid number. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                for (String brand : carBrands) {
+                    if (brand.equalsIgnoreCase(input)) {
+                        selectedCarBrand = brand;
+                        break;
+                    }
+                }
+                if (selectedCarBrand.isEmpty()) {
+                    System.out.println("Invalid brand name. Please try again.");
+                }
+            }
         }
-        System.out.print("Enter the number: ");
-        int brandChoice = scanner.nextInt();
-        String selectedCarBrand = carBrands[brandChoice - 1];
+        System.out.println("You selected: " + selectedCarBrand);
 
         // Select the car model
         String selectedCarModel = selectCarModel(selectedCarBrand);
