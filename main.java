@@ -1,4 +1,9 @@
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 class Main {
 
@@ -44,7 +49,7 @@ class Main {
             System.out.println("Yor discount is "+ (totalPrice - discountedPrice) + " THB");
         }
         System.out.println("Total Rental Price (after discount): " + discountedPrice + " THB");
-        System.out.println("Thank you for using our service!");
+        System.out.println("Thank you for using our service!\n");
     }
 
     // Method for calculating the total rental price
@@ -95,7 +100,7 @@ class Main {
     public static String selectCarModel(String brand) {
         Scanner scanner = new Scanner(System.in);
         String selectedCarModel = "";
-    
+
         String[] models = {};
         switch (brand.toLowerCase()) {
             case "toyota":
@@ -117,25 +122,27 @@ class Main {
                 System.out.println("Invalid brand selected.");
                 return "";
         }
-    
+
         while (selectedCarModel.isEmpty()) {
             System.out.println("Select the model:");
             for (int i = 0; i < models.length; i++) {
                 System.out.println((i + 1) + ". " + models[i]);
             }
             System.out.print("Enter the number or name of the model: ");
-            
-            if (scanner.hasNextInt()) {
-                int modelChoice = scanner.nextInt();
+
+            String input = scanner.nextLine();
+            try {
+                // Check if the input is a number
+                int modelChoice = Integer.parseInt(input);
                 if (modelChoice >= 1 && modelChoice <= models.length) {
                     selectedCarModel = models[modelChoice - 1];
                 } else {
                     System.out.println("Invalid number choice. Please try again.");
                 }
-            } else {
-                String modelInput = scanner.next().toLowerCase();
+            } catch (NumberFormatException e) {
+                // If input is not a number, match it with the model names
                 for (String model : models) {
-                    if (model.toLowerCase().equals(modelInput)) {
+                    if (model.equalsIgnoreCase(input)) {
                         selectedCarModel = model;
                         break;
                     }
@@ -145,9 +152,8 @@ class Main {
                 }
             }
         }
-    
         return selectedCarModel;
-    }    
+    }
 
     // Method to calculate the number of rental days between two dates
     public static int getDaysFromDate(int year, int month, int day, int[] daysInMonth) {
@@ -168,9 +174,75 @@ class Main {
         return totalDays;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void saveCustomer(String carType, int days, double totalPrice, double discountedPrice, String licensePlate, String name, String startDate, String endDate) {
+        try (FileWriter writer = new FileWriter("/Users/jaifha_wongkunta/Documents/wuttikan/java-rentalcar-project/customers.txt", true)) {
+            writer.write("Renter Name: " + name + "\n");
+            writer.write("Car Type: " + carType + "\n");
+            writer.write("License Plate: " + licensePlate + "\n");
+            writer.write("Start Date: " + startDate + "\n");
+            writer.write("End Date: " + endDate + "\n");
+            writer.write("Total Rental Days: " + days + " days \n");
+            writer.write("Total Rental Price (before discount): " + totalPrice + " THB \n");
+            if (totalPrice == discountedPrice) {
+                writer.write("Yor discount is " +"0" + " THB \n");
+            }else {
+                writer.write("Yor discount is "+ (totalPrice - discountedPrice) + " THB \n");
+            }
+            writer.write("Total Rental Price (after discount): " + discountedPrice + " THB \n");
+            writer.write("---------------------------------\n");
+        } catch (IOException e) {
+            System.out.println("Error writing to text file: " + e.getMessage());
+        }
+    }
 
+    // Method to display rental information
+    public static void displayRentalInfo() {
+        try {
+            File file = new File("/Users/jaifha_wongkunta/Documents/wuttikan/java-rentalcar-project/customers.txt");
+            Scanner fileScanner = new Scanner(file);
+            System.out.println("\n--- Rental Information ---");
+            while (fileScanner.hasNextLine()) {
+                System.out.println(fileScanner.nextLine());
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: File not found.");
+        }
+    }
+
+    // Main menu method
+    public static void showMenu() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n===== Vehicle Rental System =====");
+            System.out.println("1. Rent a Vehicle");
+            System.out.println("2. Rental Information");
+            System.out.println("3. Exit");
+            System.out.print("Please select an option: ");
+
+            String input = scanner.nextLine().toLowerCase();
+
+            switch (input) {
+                case "1":
+                case "rent a vehicle":
+                    rentVehicle(scanner);
+                    break;
+                case "2":
+                case "rental information":
+                    displayRentalInfo();
+                    break;
+                case "3":
+                case "exit":
+                    System.out.println("Thank you for using Vehicle Rental System");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+
+    public static void rentVehicle(Scanner scanner) {
         // Select the car brand
         String[] carBrands = {"Toyota", "Honda", "Mercedes", "BMW", "Tesla"};
         String selectedCarBrand = "";
@@ -235,11 +307,13 @@ class Main {
         // Calculate the number of rental days
         int startrent = getDaysFromDate(startYear,startMonth,startDay,daysInMonth);
         int endrent = getDaysFromDate(endYear,endMonth,endDay,daysInMonth);
-    int daysBetween=endrent-startrent;
+        int daysBetween = endrent - startrent;
         System.out.println("Total rental days: " + daysBetween);
+
         // Calculate the rental price
         double totalPrice = rent(selectedCarBrand, selectedCarModel, daysBetween);
         double discountedPrice = applyDiscount(totalPrice, daysBetween);
+
         // Generate the license plate
         String licensePlate = generateLicensePlate();
 
@@ -250,5 +324,10 @@ class Main {
 
         // Print the receipt
         printReceipt(selectedCarBrand + " " + selectedCarModel, daysBetween, totalPrice, discountedPrice, licensePlate, name, startDate, endDate);
+        saveCustomer(selectedCarBrand + " " + selectedCarModel, daysBetween, totalPrice, discountedPrice, licensePlate, name, startDate, endDate);
+    }
+
+    public static void main(String[] args) {
+        showMenu();
     }
 }

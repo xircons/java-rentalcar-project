@@ -1,0 +1,10 @@
+Renter Name: nongfha
+Car Type: BMW X5
+License Plate: คค 1644
+Start Date: 28/11/2024
+End Date: 10/12/2024
+Total Rental Days: 12 days 
+Total Rental Price (before discount): 15600.0 THB 
+Yor discount is 1092.0 THB 
+Total Rental Price (after discount): 14508.0 THB 
+---------------------------------
