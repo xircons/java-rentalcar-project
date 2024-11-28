@@ -204,7 +204,6 @@ class Main {
             while (fileScanner.hasNextLine()) {
                 System.out.println(fileScanner.nextLine());
             }
-            fileScanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Error: File not found.");
         }
