@@ -1,10 +1,130 @@
-Renter Name: nongfha
+Renter Name: test
+Car Type: Toyota Corolla
+License Plate: งง 3329
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 200750.0 THB 
+Yor discount is 14052.5 THB 
+Total Rental Price (after discount): 186697.5 THB 
+---------------------------------
+Renter Name: test
+Car Type: Toyota Camry
+License Plate: ฆฆ 5580
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 438000.0 THB 
+Yor discount is 30660.0 THB 
+Total Rental Price (after discount): 407340.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Toyota Hilux
+License Plate: งง 8183
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 547500.0 THB 
+Yor discount is 38325.0 THB 
+Total Rental Price (after discount): 509175.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Honda Civic
+License Plate: ญญ 5288
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 219000.0 THB 
+Yor discount is 15330.0 THB 
+Total Rental Price (after discount): 203670.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Honda Accord
+License Plate: ญญ 5410
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 438000.0 THB 
+Yor discount is 30660.0 THB 
+Total Rental Price (after discount): 407340.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Honda HR-V
+License Plate: ญญ 4645
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 474500.0 THB 
+Yor discount is 33215.0 THB 
+Total Rental Price (after discount): 441285.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Mercedes A-Class
+License Plate: ชช 9434
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 219000.0 THB 
+Yor discount is 15330.0 THB 
+Total Rental Price (after discount): 203670.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Mercedes C-Class
+License Plate: งง 7915
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 438000.0 THB 
+Yor discount is 30660.0 THB 
+Total Rental Price (after discount): 407340.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Mercedes E-Class
+License Plate: ฉฉ 5132
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 474500.0 THB 
+Yor discount is 33215.0 THB 
+Total Rental Price (after discount): 441285.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: BMW 5 Series
+License Plate: ฉฉ 7627
+Start Date: 1/1/1
+End Date: 1/1/2
+Total Rental Days: 365 days 
+Total Rental Price (before discount): 438000.0 THB 
+Yor discount is 30660.0 THB 
+Total Rental Price (after discount): 407340.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: BMW 3 Series
+License Plate: งง 1514
+Start Date: 1/1/1
+End Date: 2/1/1
+Total Rental Days: 1 days 
+Total Rental Price (before discount): 600.0 THB 
+Yor discount is 0 THB 
+Total Rental Price (after discount): 600.0 THB 
+---------------------------------
+Renter Name: test
 Car Type: BMW X5
-License Plate: คค 1644
-Start Date: 28/11/2024
-End Date: 10/12/2024
-Total Rental Days: 12 days 
-Total Rental Price (before discount): 15600.0 THB 
-Yor discount is 1092.0 THB 
-Total Rental Price (after discount): 14508.0 THB 
+License Plate: คค 4804
+Start Date: 1/1/1
+End Date: 1/2/1
+Total Rental Days: 31 days 
+Total Rental Price (before discount): 40300.0 THB 
+Yor discount is 2821.0 THB 
+Total Rental Price (after discount): 37479.0 THB 
+---------------------------------
+Renter Name: test
+Car Type: Tesla Model 3
+License Plate: ญญ 2488
+Start Date: 1/2/1
+End Date: 1/3/1
+Total Rental Days: 28 days 
+Total Rental Price (before discount): 16800.0 THB 
+Yor discount is 1176.0 THB 
+Total Rental Price (after discount): 15624.0 THB 
 ---------------------------------

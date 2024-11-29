@@ -3,7 +3,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 class Main {
 
@@ -132,7 +131,6 @@ class Main {
 
             String input = scanner.nextLine();
             try {
-                // Check if the input is a number
                 int modelChoice = Integer.parseInt(input);
                 if (modelChoice >= 1 && modelChoice <= models.length) {
                     selectedCarModel = models[modelChoice - 1];
@@ -140,7 +138,6 @@ class Main {
                     System.out.println("Invalid number choice. Please try again.");
                 }
             } catch (NumberFormatException e) {
-                // If input is not a number, match it with the model names
                 for (String model : models) {
                     if (model.equalsIgnoreCase(input)) {
                         selectedCarModel = model;
